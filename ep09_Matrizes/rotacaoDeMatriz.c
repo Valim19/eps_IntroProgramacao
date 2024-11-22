@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 void imprimeMatriz(int **matriz, int n){
+    printf("\n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             printf("%4d", matriz[i][j]);
@@ -10,8 +11,34 @@ void imprimeMatriz(int **matriz, int n){
     }
 }
 
+void rotacionaMatriz(int **matriz, int n) {
+    int **temp = (int **)malloc(n * sizeof(int *));
+    for (int i = 0; i < n; i++) {
+        temp[i] = (int *)malloc(n * sizeof(int));
+    }
 
-void criaMatriz(int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            temp[j][n - i - 1] = matriz[i][j];
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matriz[i][j] = temp[i][j];
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        free(temp[i]);
+    }
+    free(temp);
+
+    imprimeMatriz(matriz, n);
+}
+
+
+int** criaMatriz(int n) {
     int **matriz = (int **)malloc(n * sizeof(int *));
     for (int i = 0; i < n; i++) {
         matriz[i] = (int *)malloc(n * sizeof(int));
@@ -26,6 +53,8 @@ void criaMatriz(int n) {
     }
 
     imprimeMatriz(matriz, n);
+
+    return matriz;
 }
 
 int main() {
@@ -33,7 +62,9 @@ int main() {
     printf("Escreva um número maior ou igual a 1: ");
     scanf("%d", &n);
 
-    criaMatriz(n);
+    int **matriz = criaMatriz(n);
+
+    rotacionaMatriz(matriz, n);
 
     return 0;
 }
