@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void imprimeMatriz(int **matriz, int n){
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%4d", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
 void criaMatriz(int n) {
     int **matriz = (int **)malloc(n * sizeof(int *));
     for (int i = 0; i < n; i++) {
@@ -15,12 +25,7 @@ void criaMatriz(int n) {
         }
     }
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%4d", matriz[i][j]);
-        }
-        printf("\n");
-    }
+    imprimeMatriz(matriz, n);
 }
 
 int main() {
