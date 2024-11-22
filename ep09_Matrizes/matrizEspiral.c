@@ -44,11 +44,6 @@ int main() {
     printf("Digite um número inteiro positivo para a dimensão da matriz (n): ");
     scanf("%d", &n);
 
-    if (n <= 0) {
-        printf("O valor de n deve ser positivo.\n");
-        return 1;
-    }
-
     int **matriz = (int **)malloc(n * sizeof(int *));
     for (int i = 0; i < n; i++) {
         matriz[i] = (int *)calloc(n, sizeof(int));
